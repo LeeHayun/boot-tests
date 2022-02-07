@@ -52,11 +52,11 @@ m5_binary = Artifact.registerArtifact(
 )
 
 disk_image = Artifact.registerArtifact(
-    command = './packer build boot-exit/boot-exit.json',
+    command = './packer build x86-ubuntu/x86-ubuntu.json',
     typ = 'disk image',
     name = 'boot-disk',
     cwd = 'disk-image',
-    path = 'disk-image/boot-exit/boot-exit-image/boot-exit',
+    path = 'disk-image/x86-ubuntu/x86-ubuntu-image/x86-ubuntu',
     inputs = [packer, experiments_repo, m5_binary,],
     documentation = 'Ubuntu with m5 binary installed and root auto login'
 )
@@ -154,14 +154,14 @@ if __name__ == "__main__":
             artifact_gem5 = gem5_binary
 
         return gem5Run.createFSRun(
-            'boot experiments with gem5-20.1 (timeout reruns)',
+            'boot experiments with gem5-21.2 (timeout reruns)',
             binary_gem5,
             'configs-boot-tests/run_exit.py',
-            'results/run_exit/vmlinux-{}/boot-exit/{}/{}/{}/{}'.
+            'results/run_exit/vmlinux-{}/x86-ubuntu/{}/{}/{}/{}'.
                 format(linux, cpu, mem, num_cpu, boot_type),
             artifact_gem5, gem5_repo, experiments_repo,
             os.path.join('linux-stable', 'vmlinux'+'-'+linux),
-            'disk-image/boot-exit/boot-exit-image/boot-exit',
+            'disk-image/x86-ubuntu/x86-ubuntu-image/x86-ubuntu',
             linux_binaries[linux], disk_image,
             cpu, mem, num_cpu, boot_type,
             timeout = 24*60*60 #10 hours
