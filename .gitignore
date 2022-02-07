@@ -2,3 +2,12 @@
 **packer_*.zip
 packer_cache/
 disk-image/boot-exit/boot-exit-image/boot-exit
+
+*.pyc
+m5out
+.vscode
+results
+venv
+disk-image/packer_cache
+gem5
+linux-stable/
